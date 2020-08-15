@@ -1,0 +1,37 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}
+        ;; for logging
+        org.clojure/tools.logging {:mvn/version "0.4.1"}
+        org.slf4j/slf4j-api {:mvn/version "1.7.30"}
+        org.slf4j/jul-to-slf4j {:mvn/version "1.7.30"}
+        org.slf4j/jcl-over-slf4j {:mvn/version "1.7.30"}
+        org.slf4j/log4j-over-slf4j {:mvn/version "1.7.30"}
+        org.slf4j/osgi-over-slf4j {:mvn/version "1.7.30"}
+        org.apache.logging.log4j/log4j-to-slf4j {:mvn/version "2.13.0"}
+        cambium/cambium.core {:mvn/version "0.9.3"}
+        cambium/cambium.codec-simple {:mvn/version "0.9.3"}
+        cambium/cambium.logback.core {:mvn/version "0.4.3"}
+        ;; config and system
+        aero {:mvn/version "1.1.6"}
+        integrant {:mvn/version "0.8.0"}
+        }
+ :aliases
+ {:java9 {:jvm-opts ["--add-opens" "java.base/jdk.internal.misc=ALL-UNNAMED"]}
+
+  :dev {:extra-paths ["dev"]
+        :extra-deps {integrant/repl {:mvn/version "0.3.1"}}}
+  
+  :test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "1.0.0"}}}
+  :runner
+  {:extra-deps {com.cognitect/test-runner
+                {:git/url "https://github.com/cognitect-labs/test-runner"
+                 :sha "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}
+   :main-opts ["-m" "cognitect.test-runner"
+               "-d" "test"]}
+  :jar {:extra-deps {seancorfield/depstar {:mvn/version "1.0.94"}}
+        :main-opts ["-m" "hf.depstar.jar" "vozi.jar"]}
+  :install {:extra-deps {deps-deploy {:mvn/version "0.0.9"}}
+            :main-opts ["-m" "deps-deploy.deps-deploy" "install" "vozi.jar"]}
+  :deploy {:extra-deps {deps-deploy {:mvn/version "0.0.9"}}
+           :main-opts ["-m" "deps-deploy.deps-deploy" "deploy" "vozi.jar"]}}}
