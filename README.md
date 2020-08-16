@@ -12,7 +12,7 @@ Visualization library around Oz
 ### Quickstart example
 
 Make sure a browser is running. And there is nothing listening on the
-default O port of 10666.
+default Oz port of 10666.
 
 Then
 
@@ -21,15 +21,17 @@ Then
 	(require '[bombaywalla.vozi :as vozi])
 
 	(def data [{:x 1 :y 1} {:x 5 :y 10} {:x 10 :y 1}])
-	(def plot (-> (vozi/line-plot {})
+	(def plot (-> (vozi/line-plot)
 	              (vozi/add-data data)))
 
 	(oz/view! plot)
 ```
 
+You should now see a line plot in your browser.
+
 ### Tests
 
-Run the project's tests (they'll fail until you edit them):
+Run the project's tests (they currently fail):
 
     $ clojure -A:test:runner
 
