@@ -13,43 +13,6 @@
   [sym]
   `(requiring-resolve '~sym))
 
-(defn set-prep!
-  "Set the prep function.
-  A no-argument function that preps keys and load namespaces as needed."
-  []
-  ((jit integrant.repl/set-prep!) (constantly ((jit syntereen.hax.system/config-and-load) :dev))))
-
-(defn go
-  "Start up the Integrant system."
-  []
-  (set-prep!)
-  ((jit integrant.repl/go)))
-
-(defn reset
-  "Reset (stop, reload, start) the Integrant system."
-  []
-  (set-prep!)
-  ((jit integrant.repl/reset)))
-
-(defn halt
-  "Stop the Integrant system."
-  []
-  (set-prep!)
-  ((jit integrant.repl/halt)))
-
-(defn system
-  "Get the Integrant system."
-  []
-  @(jit integrant.repl.state/system))
-
-(defn config
-  "Get the Integrant configuration."
-  []
-  @(jit integrant.repl.state/config))
-
-;; So that clojure.tools.namespace knows which dirs to scan when refreshing.
-((jit clojure.tools.namespace.repl/set-refresh-dirs) "dev" "src" "test")
-
 (comment
   (require '[clojure.spec.alpha :as s])
   (require '[cambium.core :as log])

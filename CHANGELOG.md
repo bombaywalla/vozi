@@ -5,12 +5,12 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ## [Unreleased]
 ### Changed
 
-## [0.1.1] - 2020-08-15
+## [0.1.1] - 2020-08-16
 ### Changed
+- Moved the logging deps to dev.
 
 ### Removed
-
-### Fixed
+- Removed the integrant and aero deps and uses.
 
 ## 0.1.0 - 2020-08-15
 ### Added

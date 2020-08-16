@@ -1,6 +1,0 @@
-{
- :secrets #include "secrets.edn"
- :ig/system {
-             :bombaywalla/vozi nil
-             }
- }

@@ -4,8 +4,6 @@ Visualization library around Oz
 
 ## Usage
 
-FIXME: write usage documentation!
-
 Run the project's tests (they'll fail until you edit them):
 
     $ clojure -A:test:runner

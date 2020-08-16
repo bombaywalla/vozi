@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>bombaywalla</groupId>
   <artifactId>vozi</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <name>vozi</name>
-  <description>FIXME: my new library.</description>
+  <description>Visualization library around Oz</description>
   <url>https://github.com/bombaywalla/vozi</url>
   <licenses>
     <license>
