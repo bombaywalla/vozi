@@ -12,6 +12,9 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Removed
 - Removed the integrant and aero deps and uses.
 
+### Added
+- Added a quickstart example to the README.
+
 ## 0.1.0 - 2020-08-15
 ### Added
 - First cut, taken from rwri/viz.

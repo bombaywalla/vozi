@@ -1,7 +1,6 @@
 (ns bombaywalla.vozi
   (:require [clojure.spec.alpha :as s]
             [clojure.string :as string]
-            [cambium.core :as log]
             [bombaywalla.vozi.specs :as vozis]
             )
   )
@@ -415,6 +414,7 @@
   ([] (qq-plot nil)))
 
 ;;; TODO: Need to allow for parameters of the theoretical distribution.
+;;; TODO: Later, provide other theoretical distributions.
 (defn qq-line
   "Returns a QQ Line plot.
   The `theoretical-distribution` must be one of:
