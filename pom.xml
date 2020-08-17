@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>bombaywalla</groupId>
   <artifactId>vozi</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <name>vozi</name>
   <description>Visualization library around Oz</description>
   <url>https://github.com/bombaywalla/vozi</url>

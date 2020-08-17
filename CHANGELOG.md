@@ -5,6 +5,11 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ## [Unreleased]
 ### Changed
 
+## [0.1.2] - 2020-08-17
+### Added
+- Added joinaggregate-transform.
+- Added Clojars and Cljdoc badges.
+
 ## [0.1.1] - 2020-08-16
 ### Changed
 - Moved the logging deps to dev.
@@ -19,6 +24,7 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - First cut, taken from rwri/viz.
 
-[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/bombaywalla/vozi/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/bombaywalla/vozi/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/bombaywalla/vozi/releases/tag/v0.1.0
