@@ -2,6 +2,9 @@
 
 Visualization library around Oz
 
+[![Clojars Project](https://img.shields.io/clojars/v/bombaywalla/vozi.svg)](https://clojars.org/bombaywalla/vozi)
+[![cljdoc badge](https://cljdoc.org/badge/bombaywalla/vozi)](https://cljdoc.org/d/bombaywalla/vozi/CURRENT)
+
 ## Usage
 
 ### Coordinates in deps.edn

@@ -145,18 +145,20 @@
                   "Each channel must be one of {:color :opacity :shape :size"))
   (assoc-in p [:resolve :legend] (zipmap channels (repeat "independent"))))
 
-(defn aggregate-transform
-  "Add an aggregate transform."
-  [p op field-name as-field groupby-field]
+(defn base-aggregate-transform
+  "Helper function to abstract out the common aspects of
+  the aggregate and joinaggregate transforms.
+  The `:aggregate-type` must be specified."
+  [p op field-name as-field {:keys [groupby-field aggregate-type]}]
   (if-let [tr (:transform p)]
     (let [[found acc] (reduce (fn [[found acc] e]
                                 (if found
                                   ;; assumes there is only one aggregate transform
                                   ;; so just append the rest if found = true
                                   [found (conj acc e)]
-                                  (if-let [agg (:aggregate e)]
+                                  (if-let [agg (aggregate-type e)]
                                     ;; transform and aggregate
-                                    (let [new-agg (update e :aggregate conj
+                                    (let [new-agg (update e aggregate-type conj
                                                           {:op op :field field-name :as as-field})]
                                       (if-let [grpby (:groupby e)]
                                         ;; groupby already present
@@ -178,17 +180,35 @@
         (assoc p :transform acc)
         ;; transform but no aggregate
         (update p :transform conj
-                (merge {:aggregate [ {:op op :field field-name :as as-field} ]}
+                (merge {aggregate-type [ {:op op :field field-name :as as-field} ]}
                        (when groupby-field
                          {:groupby [groupby-field]})))))
     ;; no transform (and hence no aggregate)
     (assoc p :transform [
-                         (merge {:aggregate [ {:op op :field field-name :as as-field} ]}
+                         (merge {aggregate-type [ {:op op :field field-name :as as-field} ]}
                                 (when groupby-field
                                   {:groupby [groupby-field]}))
                          ])))
 
-(defn calculate-transform
+(defn aggregate-transform
+  "Add an aggregate transform to the plot `p`."
+  ([p op field-name as-field {:keys [groupby-field]}]
+   (base-aggregate-transform p op field-name as-field (merge {:aggregate-type :aggregate}
+                                                             (when groupby-field
+                                                               {:groupby-field groupby-field}))))
+  ([p op field-name as-field]
+   (aggregate-transform p op field-name as-field nil)))
+
+(defn joinaggregate-transform
+  "Add a joinaggregate transform to the plot `p`."
+  ([p op field-name as-field {:keys [groupby-field]}]
+   (base-aggregate-transform p op field-name as-field (merge {:aggregate-type :joinaggregate}
+                                                             (when groupby-field
+                                                               {:groupby-field groupby-field}))))
+  ([p op field-name as-field]
+   (joinaggregate-transform p op field-name as-field nil)))
+
+ (defn calculate-transform
   "Add a calculate transform."
   [p expression as-field-name]
   (update p :transform
