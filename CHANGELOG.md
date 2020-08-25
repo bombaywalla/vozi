@@ -5,6 +5,11 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ## [Unreleased]
 ### Changed
 
+## [0.1.3] - 2020-08-24
+### Changed
+- Improved the facet function to handle a bare faceted field in
+  addition to the embedded row and column maps.
+
 ## [0.1.2] - 2020-08-17
 ### Added
 - Added joinaggregate-transform.
@@ -24,7 +29,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - First cut, taken from rwri/viz.
 
-[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/bombaywalla/vozi/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/bombaywalla/vozi/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/bombaywalla/vozi/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/bombaywalla/vozi/releases/tag/v0.1.0
