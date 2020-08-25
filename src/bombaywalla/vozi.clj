@@ -83,6 +83,7 @@
               :mark (merge {:type "rule"} mark-opts)
               :encoding {:x {:datum x-val}}
               }))
+
 (defn drule
   "Add a diagonal rule from [`x`, `y1`] to [`x2`, `y2`]
   to the plot `p`."
@@ -242,17 +243,19 @@
 
 (defn facet
   "Wrap a facet around the plot."
-  [p {:keys [row-field row-type
-             column-field column-type
-             row-opts
-             column-opts]
+  [p {:keys [row-field row-type row-opts
+             column-field column-type column-opts
+             facet-field facet-type facet-opts
+             columns]
       :or {row-type "nominal"
            column-type "nominal"
+           facet-type "nominal"
            }
       }]
-  (assert (or row-field column-field) "Must specify at least row-field or column-field")
-  (merge {:spec p}
-         {:facet (merge (when row-field
+  (assert (or facet-field row-field column-field) "Must specify facet-field, or at least one of row-field or column-field")
+  (assert (not (and facet-field (or row-field column-field))) "Cannot specify facet-field and either row-field or column-field")
+  (merge {:spec p
+          :facet (merge (when row-field
                           {:row (merge {:field row-field
                                         :type row-type}
                                        row-opts)
@@ -261,7 +264,15 @@
                           {:column (merge {:field column-field
                                            :type column-type}
                                           column-opts)
-                           }))}))
+                           })
+                        (when facet-field
+                          (merge {:field facet-field
+                                  :type facet-type}
+                                 facet-opts))
+                        ) }
+         (when columns
+           {:columns columns})
+         ))
 
 ;;; ----------------------------------------------------------------
 ;;; Different plot constructors.
