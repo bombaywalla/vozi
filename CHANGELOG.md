@@ -5,6 +5,16 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ## [Unreleased]
 ### Changed
 
+## [0.1.4] - 2020-09-07
+### Changed
+- Changed License in pom from Eclipse to MIT. It was always MIT in the
+  LICENSE file.
+- Updated the docstrings to be more informative and mark thos
+  efunctions that are not part of the API.
+
+### Added
+- Added an usage example to the docs.
+
 ## [0.1.3] - 2020-08-24
 ### Changed
 - Improved the facet function to handle a bare faceted field in
@@ -29,7 +39,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - First cut, taken from rwri/viz.
 
-[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/bombaywalla/vozi/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/bombaywalla/vozi/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/bombaywalla/vozi/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/bombaywalla/vozi/compare/v0.1.0...v0.1.1

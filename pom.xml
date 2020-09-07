@@ -3,14 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>bombaywalla</groupId>
   <artifactId>vozi</artifactId>
-  <version>0.1.3</version>
+  <version>0.1.4</version>
   <name>vozi</name>
   <description>Visualization library around Oz</description>
   <url>https://github.com/bombaywalla/vozi</url>
   <licenses>
     <license>
-      <name>Eclipse Public License</name>
-      <url>http://www.eclipse.org/legal/epl-v10.html</url>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
     </license>
   </licenses>
   <developers>
