@@ -31,7 +31,10 @@
   (assoc p :height height))
 
 (defn add-data
-  "Add `data` to the top-level of plot `p`."
+  "Add `data` to the top-level of plot `p`.
+  If `data` is a seq of maps, then it is used as is.
+  Otherwise `data` is expected to be a seq of pairs.
+  The first element of the pair is the x value and the second is the y value."
   [p data]
   (assoc p :data {:values (if (map? (first data)) ;data has named fields
                             data
@@ -149,7 +152,8 @@
 (defn base-aggregate-transform
   "Helper function to abstract out the common aspects of
   the aggregate and joinaggregate transforms.
-  The `:aggregate-type` must be specified."
+  The `:aggregate-type` must be specified.
+  Not a part of the published API."
   [p op field-name as-field {:keys [groupby-field aggregate-type]}]
   (if-let [tr (:transform p)]
     (let [[found acc] (reduce (fn [[found acc] e]
@@ -279,7 +283,8 @@
 ;;; ----------------------------------------------------------------
 
 (defn base-plot
-  "Helper function that generates a base Oz plot."
+  "Helper function that generates a base Oz plot.
+  Not a part of the published API."
   [{:keys [mark-type mark-opts
            x-field x-type x-opts
            y-field y-type y-opts
@@ -322,27 +327,32 @@
    })
 
 (defn line-plot
-  "Returns a line plot."
+  "Returns a line plot.
+  `opts` are specified in the docs for `base-plot`."
   ([opts] (base-plot (assoc opts :mark-type "line")))
   ([] (line-plot nil)))
 
 (defn scatter-plot
-  "Returns a scatter plot."
+  "Returns a scatter plot.
+  `opts` are specified in the docs for `base-plot`."
   ([opts] (base-plot (assoc opts :mark-type "point")))
   ([] (scatter-plot nil)))
 
 (defn bar-plot
-  "Returns a bar plot."
+  "Returns a bar plot.
+  `opts` are specified in the docs for `base-plot`."
   ([opts] (base-plot (assoc opts :mark-type "bar")))
   ([] (bar-plot nil)))
 
 (defn area-plot
-  "Returns a bar plot."
+  "Returns a bar plot.
+  `opts` are specified in the docs for `base-plot`."
   ([opts] (base-plot (assoc opts :mark-type "area")))
   ([] (bar-plot nil)))
 
 (defn histogram-plot
-  "Returns a histogram plot."
+  "Returns a histogram plot.
+  `opts` are specified in the docs for `base-plot`."
   ([{:keys [x-field max-bins x-opts y-opts]
      :or {x-field "x" max-bins 100}
      :as opts}]
@@ -358,7 +368,8 @@
   ([] (histogram-plot nil)))
 
 (defn density-plot
-  "Returns a density plot."
+  "Returns a density plot.
+  `opts` are specified in the docs for `base-plot`."
   ([{:keys [density-field groupby-field groupby-field-type]
      :or {density-field "x" groupby-field-type "nominal"}
      :as opts}]
@@ -380,6 +391,7 @@
 
 (defn faceted-density-plot
   "Returns a set of vertically-stacked density plots.
+  `opts` are specified in the docs for `base-plot`.
   Requires `faceted-field` (the field name to facet by).
   `groupby-field`, `fold-fields` (a vector) and `fold-as-fields` (a vector) are optional.
   `fold-as-fields` defaults to [\"key\" \"value\"] if not specified.
@@ -420,6 +432,7 @@
 
 (defn qq-plot
   "Returns a QQ plot.
+  `opts` are specified in the docs for `base-plot`.
   The `theoretical-distribution` must be one of:
   \"Normal\" (default), \"Uniform\", or \"LogNormal\"."
   ([{:keys [quantile-field quantile-step
@@ -489,10 +502,9 @@
   ([] (qq-line nil)))
 
 (defn zipf-plot
-  "Returns a Zipf (log-log scatter) plot."
-  ([{:keys []
-     :or {}
-     :as opts}]
+  "Returns a Zipf (log-log scatter) plot.
+  `opts` are specified in the docs for `base-plot`."
+  ([opts]
    (-> (scatter-plot opts)
        (x-scale-log10)
        (y-scale-log10)))
