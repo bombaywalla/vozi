@@ -1,9 +1,9 @@
 # Introduction to vozi
 
 `vozi` is just a thin wrapper around `oz` (which, in turn, is a
-wrapper around `vega` and `vaga-lite`.
+wrapper around `vega` and `vaga-lite`).
 
-The idea was to creat an API similar to `ggplot2` that would allow for
+The idea was to create an API similar to `ggplot2` that would allow for
 the incremental creation of a plot.
 
 It is not clear that `vozi` provides enough benefit at the moment,
@@ -17,13 +17,13 @@ Here are some examples of `vozi` usage.
 ```clojure
 
 (require '[oz.core :as oz])
-(require 'bombaywalla/vozi :as viz])
+(require '[bombaywalla/vozi :as viz])
 
 (defn sample-correlation-normal
   "Returns the `sample-size` sample correlation for two Gaussians
   with a population correlation of `rho`."
   [sample-size rho]
-  ;;; to be defined
+  ;;; to be filled in
   )
 
 (defn plot-correlation
