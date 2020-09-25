@@ -5,6 +5,7 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ## [Unreleased]
 ### Changed
 - Fixed typos in the intro.md doc.
+- Fixed issues reported by clj-kondo.
 
 ## [0.1.4] - 2020-09-07
 ### Changed
