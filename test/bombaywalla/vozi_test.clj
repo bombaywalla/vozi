@@ -1,5 +1,5 @@
 (ns bombaywalla.vozi-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [clojure.set :as cset]
             [bombaywalla.vozi :as sut]))
 

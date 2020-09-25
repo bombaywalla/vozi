@@ -1,7 +1,5 @@
 (ns bombaywalla.vozi
-  (:require [clojure.spec.alpha :as s]
-            [clojure.string :as string]
-            [bombaywalla.vozi.specs :as vozis]
+  (:require [clojure.string :as string]
             )
   )
 
@@ -161,11 +159,11 @@
                                   ;; assumes there is only one aggregate transform
                                   ;; so just append the rest if found = true
                                   [found (conj acc e)]
-                                  (if-let [agg (aggregate-type e)]
+                                  (if (aggregate-type e)
                                     ;; transform and aggregate
                                     (let [new-agg (update e aggregate-type conj
                                                           {:op op :field field-name :as as-field})]
-                                      (if-let [grpby (:groupby e)]
+                                      (if (:groupby e)
                                         ;; groupby already present
                                         (if groupby-field
                                           [true (conj acc (update new-agg :groupby conj
@@ -302,7 +300,7 @@
          color-type "nominal"
          shape-type "nominal"
          facet-type "nominal"}
-    :as opts}]
+    }]
   (assert mark-type "mark-type must be specified.")
   {
    :mark (merge {:type mark-type} mark-opts)
@@ -474,6 +472,8 @@
                    (str "The theoretical distribution must be one of: " (string/join ", " allowed-theo-dists) "."))
          new-opts (assoc opts
                          :mark-type "rule"
+                         :quantile-field quantile-field
+                         :groupby-field groupby-field
                          :x-field "minx" :x-type "quantitative"
                          :y-field "miny" :y-type "quantitative"
                          :x2-field "maxx" :x-type "quantitative"
