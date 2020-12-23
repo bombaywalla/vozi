@@ -14,7 +14,7 @@
   {:layer [ p ]})
 
 (defn add-layer
-  "Add another layer `l` at the end of the existing plot`p`."
+  "Add another layer `l` at the end the list of layers of the existing plot`p`."
   [p l]
   (update p :layer (fnil conj [p]) l))
 
@@ -53,14 +53,16 @@
   (assoc-in p [:title :subtitle] subtitle))
 
 (defn x-axis-title
-  "Add a `title` to the x-axis of the plot `p`."
+  "Add a `title` to the x-axis of the plot `p`.
+  To the first layer, if any. Otherwise to the top-level."
   [p title]
   (assoc-in p
             (if (:layer p) [:layer 0 :encoding :x :title] [:encoding :x :title])
             title))
 
 (defn y-axis-title
-  "Add a `title` to the y-axis of the plot `p`."
+  "Add a `title` to the y-axis of the plot `p`.
+  To the first layer, if any. Otherwise to the top-level."
   [p title]
   (assoc-in p
             (if (:layer p) [:layer 0 :encoding :y :title] [:encoding :y :title])
@@ -212,7 +214,7 @@
    (joinaggregate-transform p op field-name as-field nil)))
 
  (defn calculate-transform
-  "Add a calculate transform."
+  "Add a calculate transform to the plot `p`."
   [p expression as-field-name]
   (update p :transform
           (fnil conj [])
@@ -220,14 +222,14 @@
            :as as-field-name}))
 
 (defn filter-transform
-  "Add a filter transform."
+  "Add a filter transform to the plot `p`."
   [p pred]
   (update p :transform
           (fnil conj [])
           {:filter pred}))
 
 (defn quantile-transform
-  "Add a quantile transform."
+  "Add a quantile transform to the plot `p`."
   [p quantile-field-name q-opts]
   (update p :transform
           (fnil conj [])
@@ -235,7 +237,7 @@
                  q-opts)))
 
 (defn regression-transform
-  "Add a regression transform."
+  "Add a regression transform to the plot `p`."
   [p dep-field indep-field reg-opts]
   (update p :transform
           (fnil conj [])
@@ -244,7 +246,7 @@
                  reg-opts)))
 
 (defn facet
-  "Wrap a facet around the plot."
+  "Wrap a facet around the plot `p`."
   [p {:keys [row-field row-type row-opts
              column-field column-type column-opts
              facet-field facet-type facet-opts
@@ -277,7 +279,7 @@
          ))
 
 ;;; ----------------------------------------------------------------
-;;; Different plot constructors.
+;;; Plot constructors.
 ;;; ----------------------------------------------------------------
 
 (defn base-plot
