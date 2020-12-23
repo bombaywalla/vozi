@@ -11,29 +11,30 @@
                      org.slf4j/jcl-over-slf4j {:mvn/version "1.7.30"}
                      org.slf4j/log4j-over-slf4j {:mvn/version "1.7.30"}
                      org.slf4j/osgi-over-slf4j {:mvn/version "1.7.30"}
-                     org.apache.logging.log4j/log4j-to-slf4j {:mvn/version "2.13.3"}
-                     cambium/cambium.core {:mvn/version "0.9.3"}
-                     cambium/cambium.codec-simple {:mvn/version "0.9.3"}
-                     cambium/cambium.logback.core {:mvn/version "0.4.3"}
+                     org.apache.logging.log4j/log4j-to-slf4j {:mvn/version "2.14.0"}
+                     cambium/cambium.core {:mvn/version "1.0.0"}
+                     cambium/cambium.codec-simple {:mvn/version "1.0.0"}
+                     cambium/cambium.logback.core {:mvn/version "0.4.4"}
                      ;;
-                     metasoarous/oz {:mvn/version "1.6.0-alpha24"}
+                     metasoarous/oz {:mvn/version "1.6.0-alpha34"}
                      }}
   
   :test {:extra-paths ["test"]
-         :extra-deps {org.clojure/test.check {:mvn/version "1.0.0"}}}
+         :extra-deps {org.clojure/test.check {:mvn/version "1.1.0"}}}
 
   :runner {:extra-deps {com.cognitect/test-runner
                         {:git/url "https://github.com/cognitect-labs/test-runner"
-                         :sha "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}
+                         :sha "b6b3193fcc42659d7e46ecd1884a228993441182"}}
            :main-opts ["-m" "cognitect.test-runner"
                        "-d" "test"]}
-  :jar {:extra-deps {seancorfield/depstar {:mvn/version "1.0.94"}}
-        :main-opts ["-m" "hf.depstar.jar" "vozi.jar"]}
+  :jar {:replace-deps {seancorfield/depstar {:mvn/version "2.0.160"}}
+        :exec-fn hf.depstar/jar
+        :exec-args {:jar "vozi.jar"}}
 
-  :install {:extra-deps {deps-deploy {:mvn/version "0.0.9"}}
+  :install {:extra-deps {deps-deploy/deps-deploy {:mvn/version "0.0.12"}}
             :main-opts ["-m" "deps-deploy.deps-deploy" "install" "vozi.jar"]}
 
-  :deploy {:extra-deps {deps-deploy {:mvn/version "0.0.9"}}
+  :deploy {:extra-deps {deps-deploy/deps-deploy {:mvn/version "0.0.12"}}
            :main-opts ["-m" "deps-deploy.deps-deploy" "deploy" "vozi.jar"]}
   }
  }
