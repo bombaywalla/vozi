@@ -6,6 +6,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Changed
 - Fixed typos in the intro.md doc.
 - Fixed issues reported by clj-kondo.
+- Updated deps.
+- Changed aliases (esp for depstar) and documented in README.
 
 ## [0.1.4] - 2020-09-07
 ### Changed

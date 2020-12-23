@@ -36,25 +36,25 @@ You should now see a line plot in your browser.
 
 Run the project's tests (they currently fail):
 
-    $ clojure -A:test:runner
+    $ clojure -M:test:runner
 
 ### Create a jar
 
 Build a deployable jar of this library:
 
-    $ clojure -A:jar
+    $ clojure -X:jar
 
 ### Install the jar locally
 
 Install it locally:
 
-    $ clojure -A:install
+    $ clojure -M:install
 
 ### Deploy the jar to clojars
 
 Deploy it to Clojars -- needs `CLOJARS_USERNAME` and `CLOJARS_PASSWORD` environment variables:
 
-    $ clojure -A:deploy
+    $ clojure -M:deploy
 
 ## License
 
