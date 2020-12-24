@@ -34,7 +34,7 @@ You should now see a line plot in your browser.
 
 ### Tests
 
-Run the project's tests (they currently fail):
+Run the project's tests:
 
     $ clojure -M:test:runner
 
