@@ -17,3 +17,14 @@
                                    {:joinaggregate :aggregate})
           ]
       (is (= aggregate xfm-aggregate)))))
+
+(deftest exception-tests
+  (testing "Check to see if AssertionError is thrown for bad inputs."
+    (let [p (sut/line-plot)]
+      (is (thrown? java.lang.AssertionError (sut/facet p {})))
+      (is (thrown? java.lang.AssertionError (sut/facet p {:facet-field "foo" :row-field "bar"})))
+      (is (thrown? java.lang.AssertionError (sut/facet p {:facet-field "foo" :column-field "bar"})))
+
+      (is (thrown? java.lang.AssertionError (sut/independent-axis p [:p :q])))
+      (is (thrown? java.lang.AssertionError (sut/independent-legend p [:p :q])))
+      )))
