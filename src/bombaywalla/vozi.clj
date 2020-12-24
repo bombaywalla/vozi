@@ -139,15 +139,16 @@
 (defn independent-axis
   "Set the specified channels (as keywords) to have an independent axis."
   [p channels]
-  (assert (every? #{:x :y} channels) "Each channel must be in {:x :y}")
-  (assoc-in p [:resolve :axis] (zipmap channels (repeat "independent"))))
+  (let [allowed-channels #{:x :y}]
+    (assert (every? allowed-channels channels) (str "Each channel must be one of: " (string/join ", " allowed-channels) "."))
+    (assoc-in p [:resolve :axis] (zipmap channels (repeat "independent")))))
 
 (defn independent-legend
   "Set the specified channels (as keywords) to have an independent legend."
   [p channels]
-  (assert (every? #{:color :opacity :shape :size}
-                  "Each channel must be one of {:color :opacity :shape :size"))
-  (assoc-in p [:resolve :legend] (zipmap channels (repeat "independent"))))
+  (let [allowed-channels #{:color :opacity :shape :size}]
+    (assert (every? allowed-channels channels) (str "Each channel must be one of: " (string/join ", " allowed-channels) "."))
+    (assoc-in p [:resolve :legend] (zipmap channels (repeat "independent")))))
 
 (defn base-aggregate-transform
   "Helper function to abstract out the common aspects of
