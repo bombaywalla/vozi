@@ -9,6 +9,10 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - Updated deps.
 - Changed aliases (esp for depstar) and documented in README.
 - Updated docstrings and comments.
+- Refactored asserts to print better error messages.
+
+### Added
+- Added tests to check assert errors on bad input.
 
 ## [0.1.4] - 2020-09-07
 ### Changed
