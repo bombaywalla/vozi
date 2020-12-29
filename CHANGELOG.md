@@ -10,16 +10,19 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - Changed aliases (esp for depstar) and documented in README.
 - Updated docstrings and comments.
 - Refactored asserts to print better error messages.
+- Updated the intro doc to use a smaller example.
 
 ### Added
 - Added tests to check assert errors on bad input.
+- If the parameter to `add-data` is a string, treat as a URL.
+- Added `density-transform`.
 
 ## [0.1.4] - 2020-09-07
 ### Changed
 - Changed License in pom from Eclipse to MIT. It was always MIT in the
   LICENSE file.
-- Updated the docstrings to be more informative and mark thos
-  efunctions that are not part of the API.
+- Updated the docstrings to be more informative and mark those
+  functions that are not part of the API.
 
 ### Added
 - Added an usage example to the docs.
