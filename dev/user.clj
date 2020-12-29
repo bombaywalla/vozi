@@ -18,4 +18,5 @@
   (require '[cambium.core :as log])
   (require '[bombaywalla.vozi.specs :as vozis])
   (require '[bombaywalla.vozi :as vozi])
+  (require '[oz.core :as oz])
   )
