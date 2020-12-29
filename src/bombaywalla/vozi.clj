@@ -30,13 +30,17 @@
 
 (defn add-data
   "Add `data` to the top-level of plot `p`.
+  If `data` is a string, it is assumed to be a URL.
   If `data` is a seq of maps, then it is used as is.
   Otherwise `data` is expected to be a seq of pairs.
   The first element of the pair is the x value and the second is the y value."
   [p data]
-  (assoc p :data {:values (if (map? (first data)) ;data has named fields
-                            data
-                            (mapv (fn [[x y]] {"x" x "y" y}) data))}))
+  (assoc p :data
+         (if (string? data)
+           {:url data}
+           {:values (if (map? (first data)) ;data has named fields
+                      data
+                      (mapv (fn [[x y]] {"x" x "y" y}) data))})))
 
 (defn title
   "Add `title-text` as a title to the plot `p`.
@@ -221,6 +225,13 @@
           (fnil conj [])
           {:calculate expression
            :as as-field-name}))
+
+ (defn density-transform
+  "Add a density transform to the plot `p`."
+  [p density-field-name d-opts]
+  (update p :transform
+          (fnil conj [])
+          (merge {:density density-field-name} d-opts)))
 
 (defn filter-transform
   "Add a filter transform to the plot `p`."
