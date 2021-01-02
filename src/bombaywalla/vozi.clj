@@ -154,7 +154,7 @@
     (assert (every? allowed-channels channels) (str "Each channel must be one of: " (string/join ", " allowed-channels) "."))
     (assoc-in p [:resolve :legend] (zipmap channels (repeat "independent")))))
 
-(defn base-aggregate-transform
+(defn ^:private base-aggregate-transform
   "Helper function to abstract out the common aspects of
   the aggregate and joinaggregate transforms.
   The `:aggregate-type` must be specified.
@@ -294,7 +294,7 @@
 ;;; Plot constructors.
 ;;; ----------------------------------------------------------------
 
-(defn base-plot
+(defn ^:private base-plot
   "Helper function that generates a base Oz plot.
   Not a part of the published API."
   [{:keys [mark-type mark-opts
@@ -305,7 +305,8 @@
            color-value color-field color-type color-opts
            shape-field shape-type shape-opts
            facet-field facet-type facet-opts
-           encoding-opts]
+           encoding-opts
+           plot-opts]
     :or {x-field "x" y-field "y"
          x-type "quantitative"
          y-type "quantitative"
@@ -316,27 +317,28 @@
          facet-type "nominal"}
     }]
   (assert mark-type "mark-type must be specified.")
-  {
-   :mark (merge {:type mark-type} mark-opts)
-   :encoding (merge {:x (merge {:field x-field :type x-type} x-opts)
-                     :y (merge {:field y-field :type y-type} y-opts)
-                     }
-                    (when x2-field
-                      {:x2 (merge {:field x2-field :type x2-type} x2-opts) })
-                    (when y2-field
-                      {:y2 (merge {:field y2-field :type y2-type} y2-opts) })
-                    (when (or color-value color-field)
-                      {:color (merge (if color-value
-                                       {:value color-value}
-                                       {:field color-field :type color-type})
-                                     color-opts) })
-                    (when shape-field {:shape (merge {:field shape-field :type shape-type}
-                                                     shape-opts) })
-                    (when facet-field {:facet (merge {:field facet-field :type facet-type}
-                                                     facet-opts) })
-                    encoding-opts
-                    )
-   })
+  (merge {
+          :mark (merge {:type mark-type} mark-opts)
+          :encoding (merge {:x (merge {:field x-field :type x-type} x-opts)
+                            :y (merge {:field y-field :type y-type} y-opts)
+                            }
+                           (when x2-field
+                             {:x2 (merge {:field x2-field :type x2-type} x2-opts) })
+                           (when y2-field
+                             {:y2 (merge {:field y2-field :type y2-type} y2-opts) })
+                           (when (or color-value color-field)
+                             {:color (merge (if color-value
+                                              {:value color-value}
+                                              {:field color-field :type color-type})
+                                            color-opts) })
+                           (when shape-field {:shape (merge {:field shape-field :type shape-type}
+                                                            shape-opts) })
+                           (when facet-field {:facet (merge {:field facet-field :type facet-type}
+                                                            facet-opts) })
+                           encoding-opts
+                           )
+          }
+         plot-opts))
 
 (defn line-plot
   "Returns a line plot.
