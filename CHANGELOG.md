@@ -17,6 +17,7 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - If the parameter to `add-data` is a string, treat as a URL.
 - Added `density-transform`.
 - Added `plot-opts` to `base-plot`.
+- Added `density-opts` to `density-plot`.
 - Marked non-API functions with `^:private`.
 
 ## [0.1.4] - 2020-09-07

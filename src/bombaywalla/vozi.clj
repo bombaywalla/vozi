@@ -384,13 +384,15 @@
 (defn density-plot
   "Returns a density plot.
   `opts` are specified in the docs for `base-plot`."
-  ([{:keys [density-field groupby-field groupby-field-type]
+  ([{:keys [density-field density-opts groupby-field groupby-field-type]
      :or {density-field "x" groupby-field-type "nominal"}
      :as opts}]
    (-> (area-plot opts)
        (update-in [:transform]
                   (fnil conj [])
-                  (merge {:density density-field } (when groupby-field {:groupby [groupby-field]})))
+                  (merge {:density density-field}
+                         (when groupby-field {:groupby [groupby-field]})
+                         density-opts))
        (update-in [:encoding :x]
                   assoc
                   :field "value" :type "quantitative")
