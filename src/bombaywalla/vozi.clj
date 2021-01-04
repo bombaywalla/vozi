@@ -8,6 +8,11 @@
 ;;; They are earlier in the file so that specialized plots can use them later.
 ;;; ----------------------------------------------------------------
 
+(defn config
+  "Add a config `conf` to the plot `p`."
+  [p conf]
+  (assoc p :config conf))
+
 (defn wrap-layer
   "Wrap a layer around the plot `p`."
   [p]
@@ -343,25 +348,25 @@
 (defn line-plot
   "Returns a line plot.
   `opts` are specified in the docs for `base-plot`."
-  ([opts] (base-plot (assoc opts :mark-type "line")))
+  ([opts] (base-plot (merge {:mark-type "line"} opts)))
   ([] (line-plot nil)))
 
 (defn scatter-plot
   "Returns a scatter plot.
   `opts` are specified in the docs for `base-plot`."
-  ([opts] (base-plot (assoc opts :mark-type "point")))
+  ([opts] (base-plot (merge {:mark-type "point"} opts)))
   ([] (scatter-plot nil)))
 
 (defn bar-plot
   "Returns a bar plot.
   `opts` are specified in the docs for `base-plot`."
-  ([opts] (base-plot (assoc opts :mark-type "bar")))
+  ([opts] (base-plot (merge {:mark-type "bar"} opts)))
   ([] (bar-plot nil)))
 
 (defn area-plot
   "Returns a bar plot.
   `opts` are specified in the docs for `base-plot`."
-  ([opts] (base-plot (assoc opts :mark-type "area")))
+  ([opts] (base-plot (merge {:mark-type "area"} opts)))
   ([] (bar-plot nil)))
 
 (defn histogram-plot

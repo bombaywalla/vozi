@@ -11,6 +11,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - Updated docstrings and comments.
 - Refactored asserts to print better error messages.
 - Updated the intro doc to use a smaller example.
+- `opts` to the `base-plot` can override the `:mark-type`.
+- Updated copyright year.
 
 ### Added
 - Added tests to check assert errors on bad input.
@@ -19,6 +21,7 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - Added `plot-opts` to `base-plot`.
 - Added `density-opts` to `density-plot`.
 - Marked non-API functions with `^:private`.
+- Addded a `config` function.
 
 ## [0.1.4] - 2020-09-07
 ### Changed
