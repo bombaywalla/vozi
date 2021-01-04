@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>bombaywalla</groupId>
   <artifactId>vozi</artifactId>
-  <version>0.1.4</version>
+  <version>0.1.5</version>
   <name>vozi</name>
   <description>Visualization library around Oz</description>
   <url>https://github.com/bombaywalla/vozi</url>
@@ -38,10 +38,6 @@
     <repository>
       <id>clojars</id>
       <url>https://repo.clojars.org/</url>
-    </repository>
-    <repository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
   </repositories>
   <distributionManagement>

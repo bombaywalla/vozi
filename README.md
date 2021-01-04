@@ -10,7 +10,7 @@ Visualization library around Oz
 ### Coordinates in deps.edn
 
 	metasourous/oz {:mvn/version "RELEASE"}
-	bombaywalla/vozi {:mvn/version "0.1.4"}
+	bombaywalla/vozi {:mvn/version "0.1.5"}
 
 ### Quickstart example
 

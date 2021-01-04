@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+## [0.1.5] - 2021-01-03
 ### Changed
 - Fixed typos in the intro.md doc.
 - Fixed issues reported by clj-kondo.
@@ -57,7 +59,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - First cut, taken from rwri/viz.
 
-[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.4...HEAD
+[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.5...HEAD
+[0.1.5]: https://github.com/bombaywalla/vozi/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/bombaywalla/vozi/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/bombaywalla/vozi/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/bombaywalla/vozi/compare/v0.1.1...v0.1.2
