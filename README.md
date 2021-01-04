@@ -58,6 +58,6 @@ Deploy it to Clojars -- needs `CLOJARS_USERNAME` and `CLOJARS_PASSWORD` environm
 
 ## License
 
-Copyright © 2020 Dorab Patel
+Copyright © 2020-2021 Dorab Patel
 
 Distributed under the MIT License.
