@@ -1,9 +1,13 @@
 # vozi
 
-Visualization library around Oz
-
 [![Clojars Project](https://img.shields.io/clojars/v/bombaywalla/vozi.svg)](https://clojars.org/bombaywalla/vozi)
 [![cljdoc badge](https://cljdoc.org/badge/bombaywalla/vozi)](https://cljdoc.org/d/bombaywalla/vozi/CURRENT)
+
+Visualization library around Oz. API inspired by `ggplot2`.
+
+It is not clear that `vozi` provides enough benefit at the moment,
+since one still has to understand the semantics of `vaga-lite` to use
+it effectively.  Work in progress. All APIs subject to change.
 
 ## Usage
 
