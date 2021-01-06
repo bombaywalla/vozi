@@ -30,9 +30,9 @@ Here are some examples of `vozi` usage.
   []
   (-> (vozi/bar-plot {:x-field "date"
                       :x-type "ordinal"
-		              :x-opts {:timeUnit "month"}
-		              :y-field "precipitation"
-		              :y-opts {:aggregate "mean"}})
+                      :x-opts {:timeUnit "month"}
+                      :y-field "precipitation"
+                      :y-opts {:aggregate "mean"}})
       (vozi/add-data (vega-dataset "seattle-weather.csv"))
       ))
 
@@ -42,12 +42,12 @@ Here are some examples of `vozi` usage.
   []
   (-> (vozi/bar-plot {:x-field "age"
                       :x-type "ordinal"
-		      :y-field "people"
-		      :y-opts {:aggregate "sum"
-                       :stack "normalize"}
-                       :color-field "gender"
-	                   :color-opts {:scale {:range ["#675193" "#ca8861"]}}
-                       :plot-opts {:width {:step 17}}})
+                      :y-field "people"
+                      :y-opts {:aggregate "sum"
+                               :stack "normalize"}
+                      :color-field "gender"
+                      :color-opts {:scale {:range ["#675193" "#ca8861"]}}
+                      :plot-opts {:width {:step 17}}})
       (vozi/filter-transform "datum.year == 2000")
       (vozi/calculate-transform "datum.sex == 2 ? 'Female' : 'Male'" "gender")
       (vozi/y-axis-title "population")
