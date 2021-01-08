@@ -52,13 +52,13 @@ Build a deployable jar of this library:
 
 Install it locally:
 
-    $ clojure -M:install
+    $ clojure -X:install
 
 ### Deploy the jar to clojars
 
 Deploy it to Clojars -- needs `CLOJARS_USERNAME` and `CLOJARS_PASSWORD` environment variables:
 
-    $ clojure -M:deploy
+    $ clojure -X:deploy
 
 ## License
 

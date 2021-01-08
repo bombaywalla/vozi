@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
+### Changed
+- Changed the `install` and `deploy` aliases to work with `-X` rather
+  than `-M`.
 
 ## [0.1.6] - 2021-01-06
 ### Added

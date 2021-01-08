@@ -31,10 +31,11 @@
         :exec-fn hf.depstar/jar
         :exec-args {:jar "vozi.jar"}}
 
-  :install {:extra-deps {deps-deploy/deps-deploy {:mvn/version "0.0.12"}}
-            :main-opts ["-m" "deps-deploy.deps-deploy" "install" "vozi.jar"]}
-
-  :deploy {:extra-deps {deps-deploy/deps-deploy {:mvn/version "0.0.12"}}
-           :main-opts ["-m" "deps-deploy.deps-deploy" "deploy" "vozi.jar"]}
+  :deploy {:extra-deps {slipset/deps-deploy {:mvn/version "RELEASE"}}
+           :exec-fn deps-deploy.deps-deploy/deploy
+           :exec-args {:installer :remote :sign-releases? false :artifact "vozi.jar"}}
+  :install {:extra-deps {slipset/deps-deploy {:mvn/version "RELEASE"}}
+            :exec-fn deps-deploy.deps-deploy/deploy
+            :exec-args {:installer :local :sign-releases? false :artifact "vozi.jar"}}
   }
  }
