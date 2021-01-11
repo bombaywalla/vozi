@@ -308,41 +308,49 @@
            x2-field x2-type x2-opts
            y2-field y2-type y2-opts
            color-value color-field color-type color-opts
+           theta-field theta-type theta-opts
            shape-field shape-type shape-opts
            facet-field facet-type facet-opts
            encoding-opts
+           view-opts
            plot-opts]
-    :or {x-field "x" y-field "y"
-         x-type "quantitative"
+    :or {x-type "quantitative"
          y-type "quantitative"
          x2-type "quantitative"
          y2-type "quantitative"
+         theta-type "quantitative"
          color-type "nominal"
          shape-type "nominal"
          facet-type "nominal"}
     }]
   (assert mark-type "mark-type must be specified.")
-  (merge {
-          :mark (merge {:type mark-type} mark-opts)
-          :encoding (merge {:x (merge {:field x-field :type x-type} x-opts)
-                            :y (merge {:field y-field :type y-type} y-opts)
-                            }
-                           (when x2-field
-                             {:x2 (merge {:field x2-field :type x2-type} x2-opts) })
-                           (when y2-field
-                             {:y2 (merge {:field y2-field :type y2-type} y2-opts) })
-                           (when (or color-value color-field)
-                             {:color (merge (if color-value
-                                              {:value color-value}
-                                              {:field color-field :type color-type})
-                                            color-opts) })
-                           (when shape-field {:shape (merge {:field shape-field :type shape-type}
-                                                            shape-opts) })
-                           (when facet-field {:facet (merge {:field facet-field :type facet-type}
-                                                            facet-opts) })
-                           encoding-opts
-                           )
-          }
+  (merge {:mark (merge {:type mark-type} mark-opts)}
+         (when (or x-field y-field x2-field y2-field color-field color-value
+                   theta-field shape-field facet-field
+                   (not-empty encoding-opts))
+           {:encoding (merge {}
+                             (when (or x-field (not-empty x-opts))
+                               {:x (merge {:field x-field :type x-type} x-opts) })
+                             (when (or y-field (not-empty y-opts))
+                               {:y (merge {:field y-field :type y-type} y-opts) })
+                             (when (or x2-field (not-empty x2-opts))
+                               {:x2 (merge {:field x2-field :type x2-type} x2-opts) })
+                             (when (or y2-field (not-empty y2-opts))
+                               {:y2 (merge {:field y2-field :type y2-type} y2-opts) })
+                             (when (or color-value color-field (not-empty color-opts))
+                               {:color (merge (if color-value
+                                                {:value color-value}
+                                                {:field color-field :type color-type})
+                                              color-opts) })
+                             (when (or theta-field (not-empty theta-opts))
+                               {:theta (merge {:field theta-field :type theta-type} theta-opts) })
+                             (when (or shape-field (not-empty shape-opts))
+                               {:shape (merge {:field shape-field :type shape-type} shape-opts) })
+                             (when (or facet-field (not-empty facet-opts))
+                               {:facet (merge {:field facet-field :type facet-type} facet-opts) })
+                             encoding-opts
+                             )})
+         (when view-opts {:view view-opts})
          plot-opts))
 
 (defn line-plot
@@ -369,6 +377,36 @@
   ([opts] (base-plot (merge {:mark-type "area"} opts)))
   ([] (bar-plot nil)))
 
+(defn arc-plot
+  "Returns a arc plot.
+  `opts` are specified in the docs for `base-plot`."
+  ([opts] (base-plot (merge {:mark-type "arc"} opts)))
+  ([] (arc-plot nil)))
+
+(defn pie-plot
+  "Returns a pie plot.
+  `opts` are specified in the docs for `base-plot`."
+  ([{:keys [inner-radius outer-radius] :as opts}]
+   (-> (base-plot (merge {:mark-type "arc"} opts))
+       (update-in [:mark]
+                  merge
+                  (when inner-radius {:innerRadius inner-radius})
+                  (when outer-radius {:outerRadius outer-radius}))))
+  ([] (pie-plot nil)))
+
+(defn donut-plot
+  "Returns a donut plot.
+  `opts` are specified in the docs for `base-plot`."
+  ([{:keys [inner-radius outer-radius] :as opts}]
+   (-> (base-plot (merge {:mark-type "arc"} opts))
+       (update-in [:mark]
+                  merge
+                  (when inner-radius {:innerRadius inner-radius})
+                  (when outer-radius {:outerRadius outer-radius}))))
+  ([] (donut-plot nil)))
+
+;; TODO: Should x-field be histogram-field? Consistent with density-field
+;; TODO: Consider not having a specific max-bins default and using that of Vega-lite.
 (defn histogram-plot
   "Returns a histogram plot.
   `opts` are specified in the docs for `base-plot`."
@@ -376,7 +414,9 @@
      :or {x-field "x" max-bins 100}
      :as opts}]
    (-> (bar-plot opts)
-       (update-in [:encoding :x]
+       (update-in [:encoding :x] ; TODO: Should the  path be [:encoding :x :bin]
+                  ;; TODO: We are forcing type = quantitative.  That is probably good.
+                  ;; Can be overridden by x-opts y-opts if needed.
                   merge
                   {:field x-field :type "quantitative" :bin {:maxbins max-bins}}
                   x-opts)

@@ -6,6 +6,14 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Changed
 - Changed the `install` and `deploy` aliases to work with `-X` rather
   than `-M`.
+- Updated README example since the x-field and y-field defaults were removed.
+
+### Added
+- Added `theta-field`, `theta-type`, `theta-opts`, and `view-opts` to `base-plot`.
+- Added `arc-plot`, `pie-plot` and `donut-plot`.
+
+### Removed
+- Removed defaults for x-field and y-field in `base-plot`.
 
 ## [0.1.6] - 2021-01-06
 ### Added

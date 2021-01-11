@@ -28,7 +28,7 @@ Then
 	(require '[bombaywalla.vozi :as vozi])
 
 	(def data [{:x 1 :y 1} {:x 5 :y 10} {:x 10 :y 1}])
-	(def plot (-> (vozi/line-plot)
+	(def plot (-> (vozi/line-plot {:x-field "x" :y-field "y"})
 	              (vozi/add-data data)))
 
 	(oz/view! plot)
