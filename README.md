@@ -14,7 +14,7 @@ it effectively.  Work in progress. All APIs subject to change.
 ### Coordinates in deps.edn
 
 	metasourous/oz {:mvn/version "RELEASE"}
-	bombaywalla/vozi {:mvn/version "0.1.6"}
+	bombaywalla/vozi {:mvn/version "0.1.7"}
 
 ### Quickstart example
 

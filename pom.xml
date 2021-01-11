@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>bombaywalla</groupId>
   <artifactId>vozi</artifactId>
-  <version>0.1.6</version>
+  <version>0.1.7</version>
   <name>vozi</name>
   <description>Visualization library around Oz</description>
   <url>https://github.com/bombaywalla/vozi</url>
@@ -28,7 +28,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
-      <version>1.10.1</version>
+      <version>1.10.2-rc2</version>
     </dependency>
   </dependencies>
   <build>

@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+## [0.1.7] - 2021-01-11
 ### Changed
 - Changed the `install` and `deploy` aliases to work with `-X` rather
   than `-M`.
@@ -74,7 +76,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - First cut, taken from rwri/viz.
 
-[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.6...HEAD
+[Unreleased]: https://github.com/bombaywalla/vozi/compare/v0.1.7...HEAD
+[0.1.7]: https://github.com/bombaywalla/vozi/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/bombaywalla/vozi/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/bombaywalla/vozi/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/bombaywalla/vozi/compare/v0.1.3...v0.1.4
